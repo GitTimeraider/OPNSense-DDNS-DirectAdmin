@@ -14,7 +14,7 @@ actions_daddns.conf determines how it all visually looks within OPNSense -> Syst
 Message, description and scriptlocation can be adjusted. Parameters might also need to be adjusted as it requires the amount of "%s"s to be higher than the amount of subdomains you will enter
 <br />
 <br />
-directadmin_ddns.sh will need to be updated with: Domain name in DOMAIN, Direct admin portal url in DIRECTADMIN, username in DIRCT_USER and password in DIRECT_PW. It is also best to find the CONFIGURED_IP= rule and adjust the dns url located there to whatever your domainhoster uses for faster checks
+directadmin_ddns.sh will need to be updated with: Domain name in DOMAIN, Direct admin portal url in DIRECTADMIN, username in DIRCT_USER and password in DIRECT_PW. It is also best to find the CONFIGURED_IP= rule and adjust the dns url located there to whatever your domainhoster uses for faster checks as right now it's set to an regional DNS.
 <br />
 The idea is that when you set up the cron job, the parameters box in the UI will be filled with the subdomains you want to have automatically updated ... for example:
 <br />
