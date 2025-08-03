@@ -1,36 +1,63 @@
-# ${{\color{Purple}\Huge{\textsf{Dynamic DNS\}}}}\$
-# ${{\color{Purple}\Huge{\textsf{for Directadmin\}}}}\$
-Dynamic DNS setup for OPNSense - Allows for setting up Dynamic DNS based on Direct Admin API within OPNSense Cron UI
-<br />
-!!! This simple script is mostly combined together for myself and thus might not be fully suited for others. It lacks features and might have additions that are undesired for some. The script ofcourse can be adjusted accordingly with a little bit of Bash knowledge.
-<br /><br />
-actions_daddns.conf is to be placed in /usr/local/opnsense/service/conf/actions.d
-<br />
-directadmin_ddns.sh can be placed anywhere as long as the location in changed within actions_daddns.conf
-<br />
-<br />
-actions_daddns.conf determines how it all visually looks within OPNSense -> System -> Settings -> Cron. 
-<br />
-Message, description and scriptlocation can be adjusted. Parameters might also need to be adjusted as it requires the amount of "%s"s to be higher than the amount of subdomains you will enter
-<br />
-<br />
-directadmin_ddns.sh will need to be updated with: Domain name in DOMAIN, Direct admin portal url in DIRECTADMIN, username in DIRCT_USER and password in DIRECT_PW. It is also best to find the CONFIGURED_IP= rule and adjust the dns url located there to whatever your domainhoster uses for faster checks as right now it's set to an regional DNS.
-<br />
-The idea is that when you set up the cron job, the parameters box in the UI will be filled with the subdomains you want to have automatically updated ... for example:
-<br />
-Parameters: sub1 sub2 sub3
-<br />
-All it needs is only the subdomain names without the domain with spaces in between them
-<br /><br />
-What does the script do:
-<br />
-Checks current IP of the device based on an IP check
-<br />
-Checks IP of DNS names based on DNS server
-<br /><br />
-If difference is detected:
-<br />
-Takes the domain name and updates the domain name
-<br />
-Takes the subdomains noted in the parameters in the Cron UI and updates the subdomains
-<br /><br />
+# OPNSense Dynamic DNS for DirectAdmin
+
+*"Why is a raven like a writing desk? Why is a static IP like a moving target? Both questions have answers that change with time!"*
+
+## 🎩 Overview
+
+This repository provides a Dynamic DNS (DDNS) solution that bridges OPNSense with DirectAdmin's API, allowing your domain records to dance along with your ever-changing IP address.
+
+This script was cobbled together for personal use. It may require adjustments to fit your particular head... err, setup. Basic Bash knowledge will serve you better.
+
+## 🍄 What's in the Box?
+
+- **actions_daddns.conf** - The configuration file that determines how everything appears in OPNSense's Cron UI
+- **directadmin_ddns.sh** - The main script that performs the DNS update magic
+
+## 🐰 Installation
+
+### Step 1: Place the Configuration File
+
+Drop `actions_daddns.conf` into: `/usr/local/opnsense/service/conf/actions.d`
+
+### Step 2: Position the Script
+
+The `directadmin_ddns.sh` script can live anywhere you fancy, as long as you update the location in `actions_daddns.conf`
+
+## ⚙️ Configuration
+
+### Configure actions_daddns.conf
+
+Within this file, you can adjust:
+- **Message** - What appears in the UI
+- **Description** - Additional details for the cron job
+- **Script Location** - Where you've placed directadmin_ddns.sh
+- **Parameters** - Ensure you have enough "%s" placeholders for all your subdomains
+
+### Configure directadmin_ddns.sh
+
+Update the following variables in the script:
+
+| Variable | Description |
+|----------|-------------|
+| `DOMAIN` | Your domain name |
+| `DIRECTADMIN` | DirectAdmin portal URL |
+| `DIRECT_USER` | Your DirectAdmin username |
+| `DIRECT_PW` | Your DirectAdmin password |
+| `CONFIGURED_IP` | DNS server URL for IP checks (currently set to regional DNS) |
+
+## 🎪 Usage
+
+Once configured, navigate to:
+**OPNSense → System → Settings → Cron**
+
+You'll find your DDNS update job ready to run at your chosen intervals!
+
+## ⚠️ Mad Warnings
+
+- This script lacks some features you might expect
+- It may include additions some find undesirable
+- Regional DNS is currently configured - adjust to your domain host's DNS for faster checks
+
+## 🫖 Contributing
+
+Feel free to modify this script to suit your needs.
