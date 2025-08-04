@@ -43,7 +43,7 @@ Update the following variables in the script:
 | `DIRECTADMIN` | DirectAdmin portal URL |
 | `DIRECT_USER` | Your DirectAdmin username |
 | `DIRECT_PW` | Your DirectAdmin password |
-| `CONFIGURED_IP` | DNS server URL for IP checks (currently set to regional DNS) |
+| The DNS name | Adjust the name of the DNS server in rule 57 (currently set to regional DNS) |
 
 ## 🎪 Usage
 
