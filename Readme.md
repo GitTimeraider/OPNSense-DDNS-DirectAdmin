@@ -48,7 +48,7 @@ Update the following variables in the script:
 
 This is prefered to make sure your DNS names update as quickly as possible.
 
-Adjust the name of the DNS server in rule 57 (currently set to regional DNS) in the directadmin_ddns.sh
+Adjust the name of the DNS server in row 57 (currently set to regional DNS) in the directadmin_ddns.sh
 
 ## 🎪 Usage
 
