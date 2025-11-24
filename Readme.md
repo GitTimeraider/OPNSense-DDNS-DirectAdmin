@@ -60,12 +60,10 @@ Update the following variables in your chosen script:
 
 | Variable | Description |
 |----------|-------------|
-| `DOMAIN` | Your domain name (main domain for MULTIDOMAINS, base domain for SUBDOMAINSONLY) |
+| `DOMAIN` | Your domain name (Isn't used in MULTIDOMAINS, base domain for SUBDOMAINSONLY) |
 | `DIRECTADMIN` | DirectAdmin portal URL |
 | `DIRECT_USER` | Your DirectAdmin username |
 | `DIRECT_PW` | Your DirectAdmin password |
-
-**Note:** If using the SUBDOMAINSONLY version, you'll also need to specify which subdomains to update within the script.
 
 ### Update DNS server used
 
@@ -79,8 +77,10 @@ Once configured, navigate to:
 **OPNSense → System → Settings → Cron**
 
 You'll find your DDNS update job ready to run at your chosen intervals!
+In the cron job when using the SUBDOMAINSONLY version, fill in the subdomains with spaces in between them. For example if you have domain.com set in the script, just add subdomains with spaces in between like for example "test mail test2" (without quotations) and this updates test.domain.com, mail.domain.com and test2.domain.com.
+In the cron job when using the MULTIDOMAIN, fill in the domains with spaces in between them. For example filling in "domain1.com domain2.com" (without quotation) will update the IPs of domain.com and domain2.com and when you have used aliases (or different refer methods) in your DNS, this will mean all subdomains connected also will use the new IP.
 
-## ⚠️ Mad Warnings
+## ⚠️ Warnings
 
 - This script lacks some features you might expect
 - It may include additions some find undesirable
