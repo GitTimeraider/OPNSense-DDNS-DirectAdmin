@@ -11,7 +11,27 @@ This script was cobbled together for personal use. It may require adjustments to
 ## 🍄 What's in the Box?
 
 - **actions_daddns.conf** - The configuration file that determines how everything appears in OPNSense's Cron UI
-- **directadmin_ddns.sh** - The main script that performs the DNS update magic
+- **directadmin_ddns.sh_MULTIDOMAINS** - Script for updating main domain only (subdomains use DNS ALIAS)
+- **directadmin_ddns.sh_SUBDOMAINSONLY** - Script for updating specific subdomains with separate IPs
+
+### 🎯 Choosing Your Script
+
+This repository includes two different script options to match your DNS setup:
+
+#### MULTIDOMAINS Version
+Use `directadmin_ddns.sh_MULTIDOMAINS` if:
+- You want to update **only the main domain** (e.g., `mydomain.com`)
+- Your subdomains use **ALIAS records** pointing to the main domain
+- All subdomains rely on the main domain's IP address
+- You want a simpler setup with a single IP update
+
+#### SUBDOMAINSONLY Version
+Use `directadmin_ddns.sh_SUBDOMAINSONLY` if:
+- You need to update **specific subdomains individually**
+- Each subdomain has **its own separate IP address**
+- You want granular control over which subdomains get updated
+
+**Important:** Rename your chosen script to `directadmin_ddns.sh` (remove the `_MULTIDOMAINS` or `_SUBDOMAINSONLY` suffix) before use.
 
 ## 🐰 Installation
 
@@ -21,7 +41,7 @@ Drop `actions_daddns.conf` into: `/usr/local/opnsense/service/conf/actions.d`
 
 ### Step 2: Position the Script
 
-The `directadmin_ddns.sh` script can live anywhere you fancy, as long as you update the location in `actions_daddns.conf`
+Choose either `directadmin_ddns.sh_MULTIDOMAINS` or `directadmin_ddns.sh_SUBDOMAINSONLY` based on your needs (see "Choosing Your Script" above), then rename it to `directadmin_ddns.sh`. The script can live anywhere you fancy, as long as you update the location in `actions_daddns.conf`
 
 ## ⚙️ Configuration
 
@@ -35,20 +55,22 @@ Within this file, you can adjust:
 
 ### Configure directadmin_ddns.sh
 
-Update the following variables in the script:
+Update the following variables in your chosen script:
 
 | Variable | Description |
 |----------|-------------|
-| `DOMAIN` | Your domain name |
+| `DOMAIN` | Your domain name (main domain for MULTIDOMAINS, base domain for SUBDOMAINSONLY) |
 | `DIRECTADMIN` | DirectAdmin portal URL |
 | `DIRECT_USER` | Your DirectAdmin username |
 | `DIRECT_PW` | Your DirectAdmin password |
+
+**Note:** If using the SUBDOMAINSONLY version, you'll also need to specify which subdomains to update within the script.
 
 ### Update DNS server used
 
 This is prefered to make sure your DNS names update as quickly as possible.
 
-Adjust the name of the DNS server in row 57 (currently set to regional DNS) in the directadmin_ddns.sh
+Adjust the name of the DNS server (currently set to regional DNS) in your chosen script. The DNS server setting allows faster verification of DNS updates.
 
 ## 🎪 Usage
 
