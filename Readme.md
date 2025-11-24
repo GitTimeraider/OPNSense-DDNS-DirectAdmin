@@ -30,6 +30,7 @@ Use `directadmin_ddns.sh_SUBDOMAINSONLY` if:
 - You need to update **specific subdomains individually**
 - Each subdomain has **its own separate IP address**
 - You want granular control over which subdomains get updated
+- **Note:** This version supports only **one domain** with multiple subdomains (e.g., `sub1.mydomain.com`, `sub2.mydomain.com`). All subdomains must belong to the same base domain configured in the script.
 
 **Important:** Rename your chosen script to `directadmin_ddns.sh` (remove the `_MULTIDOMAINS` or `_SUBDOMAINSONLY` suffix) before use.
 
